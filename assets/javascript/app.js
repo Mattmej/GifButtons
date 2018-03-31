@@ -13,10 +13,16 @@ Game Plan:
 
 4. Create a way that allows the user to create their own buttons dynamically.
 
+5. When gifs first displayed, they will be still.
+
+6. When gifs are clicked, they will move.
+
 
 */
 
 $("button").on("click", function() {
+
+    $("#results").empty();
 
     // this variable will store whatever the "data-animal" attribute is set to 
     var animal = $(this).attr("data-animal");
@@ -39,6 +45,8 @@ $("button").on("click", function() {
 
         for (i = 0; i < results.length; i++) {
 
+            // $("#results").empty();
+
 
             // create new divs for every result
             // This will hold the rating and the image.
@@ -47,7 +55,7 @@ $("button").on("click", function() {
             var animalRating = $("<p>").text("Rating: " + results[i].rating);
 
             var animalImage = $("<img>");
-            animalImage.attr("src", results[i].images.fixed_height.url);
+            animalImage.attr("src", results[i].images.fixed_height_still.url);
 
             $("#results").append(animalResult);
             $(animalResult).append(animalRating);
@@ -58,9 +66,5 @@ $("button").on("click", function() {
 
 
     })
-
-
-
-
 
 })
