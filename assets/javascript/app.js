@@ -21,7 +21,10 @@ Game Plan:
 
 */
 
-$("button").on("click", function() {
+
+
+
+function displayGifs() {
 
     $("#results").empty();
 
@@ -51,44 +54,54 @@ $("button").on("click", function() {
 
             // create new divs for every result
             // This will hold the rating and the image.
-            var animalResult = $("<div class = 'd-flex flex-column'></div>");
+            var animalResult = $("<div class = 'd-flex flex-column'></div>");   
+            var animalRating = $("<p>").text("Rating: " + results[i].rating);   // the rating
+            var animalImage = $("<img>");                                       // the image
 
-            var animalRating = $("<p>").text("Rating: " + results[i].rating);
-
-            var animalImage = $("<img>");
             var imgMove = results[i].images.fixed_height.url;
             var imgStill = results[i].images.fixed_height_still.url;
-            animalImage.attr("src", imgStill);
 
-            $("#results").append(animalResult);
+            // attaching attributes to animalImage
+            animalImage.attr("src", imgStill);                                  // src = imgStill
+            animalImage.attr("data-state", "still");                            // data-state = "still"
+            animalImage.attr("data-still", imgStill);                           // data-still = imgStill
+            animalImage.attr("data-animate", imgMove);                          // data-animate = imgMove
+
+            animalImage.addClass("img");
+            $("#results").append(animalResult); 
             $(animalResult).append(animalRating);
             $(animalResult).append(animalImage);
 
             var imageState = animalImage.attr("src");
 
-            $(".gif").on("click", function() {
-
-                if (imageState == imgStill) {
-
-                    // animalImage.attr("src", results[i].images.fixed_height.url);
-                    imageState = imgMove;
-                }
-
-                else {
-                    // imageState = results[i].images.fixed_height.url;
-                    imageState = imgStill;
-                }
-
-
-
-
-
-
-
-            })
         }
-
-
     })
 
-})
+}
+
+$("button").on("click", displayGifs);
+
+// $(".img").on("click", toggleGif);
+
+$(document).on("click", ".img", toggleGif);
+
+function toggleGif() {
+    var state = $(this).attr("data-state");     // here, the "this" refers to the object with the class ".img"
+    console.log(state);
+
+    // var imgMove = this.images.fixed_height.url;
+    // var imgStill = this.images.fixed_height_still.url;
+
+    var imgMove2 = $(this).attr("data-animate");
+    var imgStill2 = $(this).attr("data-still");
+
+    if (state === "still") {
+        $(this).attr("src", imgMove2);
+        $(this).attr("data-state", "animate");
+    }
+
+    else {
+        $(this).attr("src", imgStill2);
+        $(this).attr("data-state", "still");
+    }
+}
