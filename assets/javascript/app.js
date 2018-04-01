@@ -16,6 +16,7 @@ Game Plan:
 5. When gifs first displayed, they will be still.
 
 6. When gifs are clicked, they will move.
+    a. Look into on("click") functions
 
 
 */
@@ -55,13 +56,36 @@ $("button").on("click", function() {
             var animalRating = $("<p>").text("Rating: " + results[i].rating);
 
             var animalImage = $("<img>");
-            animalImage.attr("src", results[i].images.fixed_height_still.url);
+            var imgMove = results[i].images.fixed_height.url;
+            var imgStill = results[i].images.fixed_height_still.url;
+            animalImage.attr("src", imgStill);
 
             $("#results").append(animalResult);
             $(animalResult).append(animalRating);
             $(animalResult).append(animalImage);
 
+            var imageState = animalImage.attr("src");
 
+            $(".gif").on("click", function() {
+
+                if (imageState == imgStill) {
+
+                    // animalImage.attr("src", results[i].images.fixed_height.url);
+                    imageState = imgMove;
+                }
+
+                else {
+                    // imageState = results[i].images.fixed_height.url;
+                    imageState = imgStill;
+                }
+
+
+
+
+
+
+
+            })
         }
 
 
