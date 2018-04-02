@@ -18,6 +18,16 @@ Game Plan:
 6. When gifs are clicked, they will move.
     a. Look into on("click") functions
 
+//////////////////////////////////
+
+Part 2: 
+
+1. Create a form that allows submission of more button search suggestions.
+
+2. When the form is filled and submitted, a new button is created based on the form text.
+
+3. This button will behave like the pre-existing buttons.
+
 
 */
 
@@ -79,7 +89,7 @@ function displayGifs() {
 
 }
 
-$("button").on("click", displayGifs);
+$("button:not(#submitButton)").on("click", displayGifs);
 
 // $(".img").on("click", toggleGif);
 
