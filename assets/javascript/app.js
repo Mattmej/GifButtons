@@ -28,6 +28,16 @@ Part 2:
 
 3. This button will behave like the pre-existing buttons.
 
+////////////////////////////////////
+
+To Do: 
+
+1. Create an empty array of topics
+
+2. Work with the form so that whatever is entered will be pushed into the array.
+
+3. Display the array elements as buttons with the same functionality as the original buttons.
+
 
 */
 
@@ -79,8 +89,9 @@ function displayGifs() {
 
             animalImage.addClass("img");
             $("#results").append(animalResult); 
-            $(animalResult).append(animalRating);
             $(animalResult).append(animalImage);
+            $(animalResult).append(animalRating);
+
 
             var imageState = animalImage.attr("src");
 
