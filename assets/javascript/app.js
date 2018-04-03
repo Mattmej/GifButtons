@@ -41,7 +41,7 @@ To Do:
 
 */
 
-
+var topics = [];
 
 
 function displayGifs() {
@@ -100,11 +100,79 @@ function displayGifs() {
 
 }
 
-$("button:not(#submitButton)").on("click", displayGifs);
 
-// $(".img").on("click", toggleGif);
 
-$(document).on("click", ".img", toggleGif);
+$("#submitButton").on("click", function(event) {
+    event.preventDefault();
+    var newTopic = $("#animalForm").val().trim();
+    topics.push(newTopic);
+    console.log(topics);
+    $("#animalForm").val("");
+    // create and insert a function here that creates buttons based on what is in the array.
+    displayButtons();
+})
+
+function displayButtons() {
+
+    $("#created-buttons").empty();
+    
+    for (i = 0; i < topics.length; i++) {
+        var newButton = $("<button class = 'button'></button>");
+        $(newButton).attr("data-animal", topics[i]);
+        $(newButton).text(topics[i]);
+        $("#created-buttons").append(newButton);
+        console.log(newButton);
+    }
+}
+
+/* 
+
+test case for displayButtons()
+
+1. created "goat" button
+
+    a. topics = [goat];
+
+    b. displayButtons() -> loops for topics.length
+        i. newButton created
+            * Has data-animal = goat
+        ii. newButton is appended to #created-buttons
+
+2. created "bird" button
+
+    a. topics = [goat, bird];
+
+
+    b. displayButtons() -> loop i = 0
+        i. newButton created
+            * Has data-animal = goat
+        ii. newButton is appended to #created-buttons
+
+    c. loop i = 1
+        i. newButton w/ data-animal = bird
+        ii. newButton is appended.
+
+    d. Now #created-buttons has these buttons: goat, goat, bird
+
+///////////////////////////////
+
+new test case -> put $("#created-buttons").empty() in the "for" loop.
+    
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+// displayButtons();
 
 function toggleGif() {
     var state = $(this).attr("data-state");     // here, the "this" refers to the object with the class ".img"
@@ -126,3 +194,11 @@ function toggleGif() {
         $(this).attr("data-state", "still");
     }
 }
+
+// $("button:not(#submitButton)").on("click", displayGifs);
+// $("button").on("click", displayGifs);
+$(document).on("click", "button", displayGifs);
+
+// $(".img").on("click", toggleGif);
+
+$(document).on("click", ".img", toggleGif);
