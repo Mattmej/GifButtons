@@ -47,7 +47,6 @@ To Do:
 // this array will store the topics the user enters into the form.
 var topics = [];
 
-
 function displayGifs() {
 
     // empties the #results part of the webpage whenever a topic button is clicked
@@ -124,7 +123,10 @@ function displayButtons() {
 
 // function to toggle the gif between moving and still
 function toggleGif() {
-    var state = $(this).attr("data-state");                             // here, the "this" refers to the object with the class ".img"
+
+    // holds the value of the "data-state" attribute in a variable.
+    // here, the "this" refers to the object with the class ".img"
+    var state = $(this).attr("data-state");                             
     console.log(state);
 
     var imgMove2 = $(this).attr("data-animate");                        // variable to hold the "data-animate" attribute
