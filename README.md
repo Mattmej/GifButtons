@@ -5,7 +5,7 @@ By Matt Mejia
 
 _Specifically, this application performs an ajax request to retrieve data from the GIPHY API,  then uses this data to populate the webpage with gifs._ 
 
-This application contains buttons that search for and display relevant gifs from GIPHY when clicked. Three buttons are initially displayed, but the user can create more buttons by typing topics in the search bar. New buttons will then be created based on these topics. 
+This application contains buttons that search for and display 10 relevant gifs from GIPHY when clicked. Three buttons are initially displayed, but the user can create more buttons by typing topics in the search bar. New buttons will then be created based on these topics. 
 
 Currently, the webpage will clear old gif results when any button is clicked. If the user wishes to disable this feature, they can comment out or remove the $(results).empty() line inside the displayGifs() function found in the JavaScript file. 
 
