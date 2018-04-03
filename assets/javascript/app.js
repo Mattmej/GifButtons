@@ -99,11 +99,19 @@ function displayGifs() {
 // the click event for the "submit" button on the form.
 $("#submitButton").on("click", function(event) {                             
     event.preventDefault();                                             // prevents the button from actually submitting data
-    var newTopic = $("#animalForm").val().trim();                       // takes input from the form and stores it in this variable
-    topics.push(newTopic);                                              // adds this variable to the "topics" array
-    console.log(topics);
-    $("#animalForm").val("");                                           // empties the form
-    displayButtons();                                                   // function to display user's custom buttons
+
+    if ($("#animalForm").val("")) {
+        alert("Please enter a topic!");
+    }
+
+    else {
+        var newTopic = $("#animalForm").val().trim();                       // takes input from the form and stores it in this variable
+        topics.push(newTopic);                                              // adds this variable to the "topics" array
+        console.log(topics);
+        $("#animalForm").val("");                                           // empties the form
+        displayButtons();                                                   // function to display user's custom buttons
+    }
+   
 })
 
 
