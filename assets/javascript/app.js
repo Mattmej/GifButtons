@@ -100,7 +100,8 @@ function displayGifs() {
 $("#submitButton").on("click", function(event) {                             
     event.preventDefault();                                             // prevents the button from actually submitting data
 
-    if ($("#animalForm").val("")) {
+    // if the form is empty, then... 
+    if ($("#animalForm").val() === "") {                        
         alert("Please enter a topic!");
     }
 
