@@ -76,6 +76,7 @@ function displayGifs() {
             // This will hold the rating and the image.
             var animalResult = $("<div class = 'd-flex flex-column'></div>");   
             var animalRating = $("<p>").text("Rating: " + results[i].rating);   // the rating
+            $(animalRating).addClass("gif-rating");
             var animalImage = $("<img>");                                       // the image
 
             var imgMove = results[i].images.fixed_height.url;

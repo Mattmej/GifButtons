@@ -11,3 +11,7 @@
 .gif-rating {
     text-align: center;
 }
+
+button:not(#submitButton) {
+    margin-right: 10px;
+}
