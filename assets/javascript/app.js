@@ -38,24 +38,26 @@ To Do:
 
 3. Display the array elements as buttons with the same functionality as the original buttons.
 
-
 */
 
+////////////////////////////////////
+
+
+
+// this array will store the topics the user enters into the form.
 var topics = [];
 
 
 function displayGifs() {
 
+    // empties the #results part of the webpage whenever a topic button is clicked
     $("#results").empty();
 
     // this variable will store whatever the "data-animal" attribute is set to 
     var animal = $(this).attr("data-animal");
     
-
     // create a variable to hold the queryURL.
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=pgNlFjIaMhsyZr48vV7fIJOHNC7r3sQG&limit=10";
-
-
 
     // ajax call to retrieve data from the queryURL
     $.ajax({
@@ -65,12 +67,9 @@ function displayGifs() {
 
     .then(function(response) {
 
-        var results = response.data;
+        var results = response.data;                                            // holds the response we get from the ajax call
 
-        for (i = 0; i < results.length; i++) {
-
-            // $("#results").empty();
-
+        for (i = 0; i < results.length; i++) {                                  // loops through the gif search results
 
             // create new divs for every result
             // This will hold the rating and the image.
@@ -79,127 +78,75 @@ function displayGifs() {
             $(animalRating).addClass("gif-rating");
             var animalImage = $("<img>");                                       // the image
 
-            var imgMove = results[i].images.fixed_height.url;
-            var imgStill = results[i].images.fixed_height_still.url;
+            var imgMove = results[i].images.fixed_height.url;                   // stores url for moving image
+            var imgStill = results[i].images.fixed_height_still.url;            // stores url for still image
 
             // attaching attributes to animalImage
             animalImage.attr("src", imgStill);                                  // src = imgStill
             animalImage.attr("data-state", "still");                            // data-state = "still"
             animalImage.attr("data-still", imgStill);                           // data-still = imgStill
             animalImage.attr("data-animate", imgMove);                          // data-animate = imgMove
+            animalImage.addClass("img");                                        // class = "img"
 
-            animalImage.addClass("img");
-            $("#results").append(animalResult); 
-            $(animalResult).append(animalImage);
-            $(animalResult).append(animalRating);
-
-
-            var imageState = animalImage.attr("src");
+            $("#results").append(animalResult);                                 // appends animalResult "holder" to element with #results
+            $(animalResult).append(animalImage);                                // appends animalImage to animalResult
+            $(animalResult).append(animalRating);                               // appends animalRating to animalResult
 
         }
     })
 
 }
 
-
-
-$("#submitButton").on("click", function(event) {
-    event.preventDefault();
-    var newTopic = $("#animalForm").val().trim();
-    topics.push(newTopic);
+// the click event for the "submit" button on the form.
+$("#submitButton").on("click", function(event) {                             
+    event.preventDefault();                                             // prevents the button from actually submitting data
+    var newTopic = $("#animalForm").val().trim();                       // takes input from the form and stores it in this variable
+    topics.push(newTopic);                                              // adds this variable to the "topics" array
     console.log(topics);
-    $("#animalForm").val("");
-    // create and insert a function here that creates buttons based on what is in the array.
-    displayButtons();
+    $("#animalForm").val("");                                           // empties the form
+    displayButtons();                                                   // function to display user's custom buttons
 })
 
+
+ // function to display user's custom buttons
 function displayButtons() {
 
-    $("#created-buttons").empty();
+    $("#created-buttons").empty();                                      // empties the div with #created-buttons
     
-    for (i = 0; i < topics.length; i++) {
-        var newButton = $("<button class = 'button'></button>");
-        $(newButton).attr("data-animal", topics[i]);
-        $(newButton).text(topics[i]);
-        $("#created-buttons").append(newButton);
+    for (i = 0; i < topics.length; i++) {                               // loops through the entries of the "topics" array
+        var newButton = $("<button class = 'button'></button>");        // newButton is a button element
+        $(newButton).attr("data-animal", topics[i]);                    // adds data-animal = topics[i] attribute to newButton
+        $(newButton).text(topics[i]);                                   // the button will have the text of the appropriate search term
+        $("#created-buttons").append(newButton);                        // appends the custom buttons to the div with #created-buttons
         console.log(newButton);
     }
 }
 
-/* 
-
-test case for displayButtons()
-
-1. created "goat" button
-
-    a. topics = [goat];
-
-    b. displayButtons() -> loops for topics.length
-        i. newButton created
-            * Has data-animal = goat
-        ii. newButton is appended to #created-buttons
-
-2. created "bird" button
-
-    a. topics = [goat, bird];
-
-
-    b. displayButtons() -> loop i = 0
-        i. newButton created
-            * Has data-animal = goat
-        ii. newButton is appended to #created-buttons
-
-    c. loop i = 1
-        i. newButton w/ data-animal = bird
-        ii. newButton is appended.
-
-    d. Now #created-buttons has these buttons: goat, goat, bird
-
-///////////////////////////////
-
-new test case -> put $("#created-buttons").empty() in the "for" loop.
-    
-
-
-
-
-
-
-
-
-
-
-
-*/
-
-
-// displayButtons();
-
+// function to toggle the gif between moving and still
 function toggleGif() {
-    var state = $(this).attr("data-state");     // here, the "this" refers to the object with the class ".img"
+    var state = $(this).attr("data-state");                             // here, the "this" refers to the object with the class ".img"
     console.log(state);
 
-    // var imgMove = this.images.fixed_height.url;
-    // var imgStill = this.images.fixed_height_still.url;
+    var imgMove2 = $(this).attr("data-animate");                        // variable to hold the "data-animate" attribute
+    var imgStill2 = $(this).attr("data-still");                         // variable to hold the "data-still" attribute
 
-    var imgMove2 = $(this).attr("data-animate");
-    var imgStill2 = $(this).attr("data-still");
-
-    if (state === "still") {
-        $(this).attr("src", imgMove2);
-        $(this).attr("data-state", "animate");
+    // if the gif is not moving, then....
+    if (state === "still") {                                        
+        $(this).attr("src", imgMove2);                                  // sets the element's src attribute to "data-animate"
+        $(this).attr("data-state", "animate");                          // sets the element's data-state attribute to "animate"
     }
 
+    // if the gif is moving, then...
     else {
-        $(this).attr("src", imgStill2);
-        $(this).attr("data-state", "still");
+        $(this).attr("src", imgStill2);                                 // sets the element's src attribute to "data-still"
+        $(this).attr("data-state", "still");                            // sets the element's data-state attribute to "still"
     }
 }
 
-// $("button:not(#submitButton)").on("click", displayGifs);
-// $("button").on("click", displayGifs);
+// thanks to this line of code, any button in the document will run the displayGifs() function when clicked.
+// this property extends to newly created buttons.
+// $("button").on("click", displayGifs) would not work.
 $(document).on("click", "button", displayGifs);
 
-// $(".img").on("click", toggleGif);
-
+// when an image is clicked, toggleGif() function runs
 $(document).on("click", ".img", toggleGif);
