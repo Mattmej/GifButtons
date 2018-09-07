@@ -47,20 +47,16 @@ To Do:
 // this array will store the topics the user enters into the form.
 var topics = [];
 
-var gifnum = 10;
-
 function displayGifs() {
 
     // empties the #results part of the webpage whenever a topic button is clicked
     $("#results").empty();
 
-    gifnum += 10;
-
     // this variable will store whatever the "data-animal" attribute is set to 
     var animal = $(this).attr("data-animal");
     
     // create a variable to hold the queryURL.
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=pgNlFjIaMhsyZr48vV7fIJOHNC7r3sQG&limit=" + gifnum;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=pgNlFjIaMhsyZr48vV7fIJOHNC7r3sQG&limit=10";
 
     // ajax call to retrieve data from the queryURL
     $.ajax({
