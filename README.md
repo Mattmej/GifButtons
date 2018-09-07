@@ -11,3 +11,9 @@ Currently, the webpage will clear old gif results when any button is clicked. If
 
 When a gif is clicked, it will animate. If the gif is clicked again, it will stop animating. Multiple gifs can be animated and stopped in this manner. 
 
+## App in Action
+
+Searching for and animating dog gifs:
+
+![dog_search]()
+
