@@ -15,5 +15,33 @@ When a gif is clicked, it will animate. If the gif is clicked again, it will sto
 
 Searching for and animating dog gifs:
 
-![dog_search]()
+![dog_search](https://github.com/Mattmej/GifButtons/blob/master/assets/gifs/dog_search.gif)
+
+<br/>
+<br/>
+
+Searching for and animating cat gifs:
+
+![cat_search](https://github.com/Mattmej/GifButtons/blob/master/assets/gifs/cat_search.gif)
+
+<br/>
+<br/>
+
+Searching for and animating mouse gifs:
+
+![mouse_search](https://github.com/Mattmej/GifButtons/blob/master/assets/gifs/mouse_search.gif)
+
+<br/>
+<br/>
+
+Adding custom search buttons:
+
+![add_custom_buttons](https://github.com/Mattmej/GifButtons/blob/master/assets/gifs/add_custom_buttons.gif)
+
+<br/>
+<br/>
+
+Using custom search:
+
+![custom_search](https://github.com/Mattmej/GifButtons/blob/master/assets/gifs/custom_search.gif)
 
